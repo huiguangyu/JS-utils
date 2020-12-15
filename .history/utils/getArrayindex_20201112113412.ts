@@ -1,0 +1,3 @@
+function getIndex = (arr: any) => { 
+
+}
