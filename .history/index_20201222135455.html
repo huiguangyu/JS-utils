@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="file"
+      id="docpicker"
+      accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    />
+  </body>
+  <script>
+    const fileDom = document.querySelector('#docpicker')
+    fileDom.change(() => {
+      console.log(this)
+    })
+  </script>
+</html>

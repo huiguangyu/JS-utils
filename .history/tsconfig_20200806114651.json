@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "strict": true,
-    "composite": true, // 增量编译
-    "declaration": true
-  }
-}

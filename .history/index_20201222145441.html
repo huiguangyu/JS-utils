@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="docpicker" onChange="importSheet(event)" />
+    <div>
+      接口Api:
+      <input type="text" onchange="getUrl" />
+    </div>
+    <div>
+      请求方式
+      <select>
+        <option value="get">GET</option>
+        <option value="post">POST</option>
+        <option value="del">DEL</option>
+        <option value="put">PUT</option>
+      </select>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+  <script>
+    const fileDom = document.querySelector('#docpicker')
+    let url = '',
+      method = 'get'
+    const importSheet = (e) => {
+      let f = fileDom.files[0]
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        let data = e.target.result
+        let workbook = XLSX.read(data, {
+          type: 'binary'
+        })
+        console.log('workbook:', workbook)
+        let json = XLSX.utils.sheet_to_json(
+          workbook.Sheets[workbook.SheetNames[0]]
+        )
+      }
+      reader.readAsBinaryString(f)
+    }
+
+    function submitJson() {}
+  </script>
+</html>

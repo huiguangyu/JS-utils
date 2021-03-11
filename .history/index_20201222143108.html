@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="docpicker" />
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.min.js"></script>
+  <script>
+    const fileDom = document.querySelector('#docpicker')
+    fileDom.onchange = (e) => {
+      let imFile = document.getElementById('imFile')
+      let f = imFile.files[0]
+      // 调用FileReader读取文件
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        let data = e.target.result
+        let workbook = XLSX.read(data, {
+          type: 'binary'
+        })
+        console.log('workbook:', workbook)
+        let json = XLSX.utils.sheet_to_json(
+          workbook.Sheets[workbook.SheetNames[0]]
+        )
+        console.log('json:', json)
+      }
+      reader.readAsBinaryString(f)
+    }
+  </script>
+</html>
